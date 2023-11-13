@@ -19,7 +19,6 @@ import React, { useState } from 'react'
 // let name = "Saif";
 function App() {
   const [mode, setMode] = useState("light")
-  const [mode1, setMode1] = useState("light")
   const [alert, setAlert] = useState(null)
 
   const showAlert = (massage, type) => {
@@ -33,8 +32,19 @@ function App() {
   }
 
 
+  // const removeBodyClass=()=>{
+  //   document.body.classList.remove('bg-primary')
+  //   document.body.classList.remove('bg-success')
+  //   document.body.classList.remove('bg-warning')
+  //   document.body.classList.remove('bg-danger')
+  //   document.body.classList.remove('bg-light')
+  //   document.body.classList.remove('bg-dark')
+  // }
+
 
   const toggleMode = () => {
+    // removeBodyClass()
+    // document.body.classList.add('bg-'+cls)
     if (mode === 'dark') {
       setMode('light')
       document.body.style.backgroundColor = 'white'
@@ -47,27 +57,27 @@ function App() {
     }
 
   }
-  const toggleMode1 = () => {
-    if (mode1 === 'light') {
-      setMode1('green')
-      document.body.style.backgroundColor = 'green'
-      showAlert("Green mode enabled", "success")
-    }
-    else {
-      setMode1('light')
-      document.body.style.backgroundColor = 'white'
-      showAlert("Light mode enabled", "success")
-    }
+  // const toggleMode1 = () => {
+  //   if (mode1 === 'light') {
+  //     setMode1('green')
+  //     document.body.style.backgroundColor = 'green'
+  //     showAlert("Green mode enabled", "success")
+  //   }
+  //   else {
+  //     setMode1('light')
+  //     document.body.style.backgroundColor = 'white'
+  //     showAlert("Light mode enabled", "success")
+  //   }
 
-  }
+  // }
   return (
     <>
       <Router>
-        <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode} toggleMode1={toggleMode1} mode1={mode1} />
+        <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
         <Routes>
           <Route path="/" element={<TextForm showAlert={showAlert} heading="Enter your text" mode={mode} />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About mode={mode}/>} />
         </Routes>
       </Router>
     </>
